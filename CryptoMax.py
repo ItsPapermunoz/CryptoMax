@@ -21,9 +21,11 @@ date = time.strftime("%c")
 
 def data():
     try:
-        log = pickle.load(open("Log.txt", "r"))
+        log = pickle.load(open("Log.data", "rb"))
     except FileNotFoundError:
         log = "This file was created on {}. ".format(date)
+        print(log)
+        pickle.dump(log, open("Log.data", "wb"))
         dir_path = "Text"
         os.mkdir(dir_path)
     finally:
@@ -33,4 +35,4 @@ def data():
 """Main Code"""
 
 
-data()
+log = data()
